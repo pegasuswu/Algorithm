@@ -106,3 +106,8 @@ in the heap_sort_2, circle_times is 98
 in the heap_sort_2, exchange_times is 45  
 
 From the result above ,we can see the efficiency of the heap sort algorithm.
+
+## No.4 【time complexity and space complexity】
+In fact, every traversal of quick sort puts the cardinality in the final position. The first round of traversal arranges one cardinality, the second round of traversal arranges two cardinalities (one cardinality for each region, but if a region is empty, this round can only arrange one cardinality), the third round of traversal arranges four cardinalities (similarly, in the worst case, only one cardinality), and so on. The total traversal times are logn ~ n times, and the time complexity of each round of traversal is O (n) O (n), so it is easy to analyze that the time complexity of quick sorting is O (nlogn) ~ o (n ^ 2).
+So the average time complexity is O (nlogn).  
+The spatial complexity is related to the number of layers of recursion. Each layer of recursion will generate some temporary variables, so the spatial complexity is O (logn) ~ o (n), and the average spatial complexity is O (logn)).
