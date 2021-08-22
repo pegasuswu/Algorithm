@@ -5,12 +5,12 @@ There are some dynamic diagram online to illustrate the whole process of heap so
 
 ## No.1 【algorithm】
 The algorithm process includes:
-.Firstly, create a large top heap according to the array.
+1. Firstly, create a large top heap according to the array.
 Attention: a large top heap is a complete binary tree which every node's value is bigger than its left son and right son. From the reciprocal to the root, in every node, we search its child node and if the value of child node is bigger than current node's value ,than exchange it. Through the penultimate  floor to the root, the construction of the large top heap is finished. 
-From the algorithm above, we can draw a conclusion: ater the operation above ,the whole complete binary tree is a large top heap: every node's value is bigger than its children.
-.Now, as soon as the large top heap is finished, the biggest value of the arry node is the root node, then, exchange the root node with the last index element.----Now, We get the biggest value of the array.
-Now ,because we have exchanged the root and the last index of the array, so , the rest of the array is not a large top heap anymore, thus ,we should make the rest of data a large top heap again.
-.Because we only change the root node, so we begin to check whether root node's value is bigger than its child,if small, then exchange, so we need to deal with the child'child if after exchanging ...., at last, the rest of data structure becomes a large top heap again, so exchange the root value and the last index element again....
+From the algorithm above, we can draw a conclusion: after the operation above is finished,the whole complete binary tree is a large top heap: every node's value is bigger than its children.  
+2. Now, as soon as the large top heap is finished, the biggest value of the arry node is the root node, then, exchange the root node with the last index element.----Now, We get the biggest value of the array.
+Now ,because we have exchanged the root and the last index of the array, so , the rest of the array is not a large top heap anymore, thus ,we should make the rest of data a large top heap again.  
+3. Because we only change the root node, so we begin to check whether root node's value is bigger than its child,if small, then exchange, so we need to deal with the child'child if after exchanging ...., at last, the rest of data structure becomes a large top heap again, so exchange the root value and the last index element again....
  
 ## No.2 【Dynamic diagram】
 From someone's website, the dynamic diagram is:
@@ -26,7 +26,7 @@ def initial_heap(nums, length):
     exchange_times = 0  
     while i >= 0:
         # from the reciprocal to the root, be careful ,the process should be downhill to uphill, otherwise, 
-        # after the processing ,the data structure could not be a large top heap.
+        # after the processing ,the data structure may not be a large top heap.
         return_times = heap_deal_root(nums, i, length)  
         circle_times = circle_times + return_times[0]  
         exchange_times = exchange_times + return_times[1]  
@@ -40,14 +40,14 @@ def heap_deal_root(nums, index, length):
 	child = 2 * parent + 1 
 	# From child to the last one , exchange value if needed. 
 	while child < length:  
-        if child + 1 < length and nums[child] < nums[child + 1]:  
-            child = child + 1  
-        if nums[parent] < nums[child]:  
-            nums[parent], nums[child] = nums[child], nums[parent]  
-            exchange_times = exchange_times + 1  
-            parent = child  
-            child = 2 * child + 1  
-         circle_times = circle_times + 1  
+	    if child + 1 < length and nums[child] < nums[child + 1]:  
+	        child = child + 1  
+	    if nums[parent] < nums[child]:  
+	        nums[parent], nums[child] = nums[child], nums[parent]  
+	        exchange_times = exchange_times + 1  
+	        parent = child  
+	        child = 2 * child + 1  
+        circle_times = circle_times + 1  
     return (circle_times, exchange_times)
 
 def heap_sort(nums):  
@@ -71,38 +71,38 @@ def heap_sort(nums):
     print('in the heap_sort, exchange_times is %d' % exchange_times)
 ```
 ## No.4 【Performance Analysis】
-nums = [91,60,96,13,35,65,46,65,10,30,20,31,77,81,22]
-in the basic bubble, circle_times is 105(~~n*n/2)
-in the basic bubble, exchange_times is 60
+nums = [91,60,96,13,35,65,46,65,10,30,20,31,77,81,22]  
+in the basic bubble, circle_times is 105(~~n*n/2)  
+in the basic bubble, exchange_times is 60  
 
-in the optimized bubble, circle_times is 102(~~n*n/2)
-in the optimized bubble, exchange_times is 60
+in the optimized bubble, circle_times is 102(~~n*n/2)  
+in the optimized bubble, exchange_times is 60  
 
-in the optimized_2 bubble, circle_times is 102(~~n*n/2)
-in the optimized_2 bubble, exchange_times is 60
+in the optimized_2 bubble, circle_times is 102(~~n*n/2)  
+in the optimized_2 bubble, exchange_times is 60  
 
-in the selection_basic_sort, circle_times is 105(~~n*n/2)
-in the selection_basic_sort, exchange_times is 15
+in the selection_basic_sort, circle_times is 105(~~n*n/2)  
+in the selection_basic_sort, exchange_times is 15  
 
-in the selection_sort_optimize, circle_times is 56(~~n*n/2/2)
-in the selection_sort_optimize, exchange_times is 14
+in the selection_sort_optimize, circle_times is 56(~~n*n/2/2)  
+in the selection_sort_optimize, exchange_times is 14  
 
-in the insert_sort, circle_times is 74
-in the insert_sort, exchange_times is 60
+in the insert_sort, circle_times is 74  
+in the insert_sort, exchange_times is 60  
 
-in the insert_sort, circle_times is 74
-in the insert_sort_optimize, exchange_times is 60
+in the insert_sort, circle_times is 74  
+in the insert_sort_optimize, exchange_times is 60  
 
-in the hill_sort, circle_times is 77
-in the hill_sort, exchange_times is 33
+in the hill_sort, circle_times is 77  
+in the hill_sort, exchange_times is 33  
 
-in the hill_sort_optimize, circle_times is 57
-in the hill_sort_optimize, exchange_times is 23
+in the hill_sort_optimize, circle_times is 57  
+in the hill_sort_optimize, exchange_times is 23  
 
-in the heap_sort, circle_times is 28
-in the heap_sort, exchange_times is 25
+in the heap_sort, circle_times is 28  
+in the heap_sort, exchange_times is 25  
 
-in the heap_sort_2, circle_times is 98
-in the heap_sort_2, exchange_times is 45
+in the heap_sort_2, circle_times is 98  
+in the heap_sort_2, exchange_times is 45  
 
 From the result above ,we can see the efficiency of the heap sort algorithm.
